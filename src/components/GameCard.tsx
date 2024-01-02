@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import PlatformIconList from "./PlatformIconList";
 import MetaCritic from "./MetaCritic";
+import getCroppedImageUrl from "../Services/image-url";
 
 interface Props {
     game: Game;
@@ -17,8 +18,8 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
     return (
-        <Card borderRadius={6} overflow="hidden">
-            <Image src={game.background_image} />
+        <Card width="300px" borderRadius={6} overflow="hidden">
+            <Image src={getCroppedImageUrl(game.background_image)} />
             <CardBody>
                 <Heading fontSize="2xl">{game.name}</Heading>
                 <HStack justifyContent="space-between">
