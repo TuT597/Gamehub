@@ -13,9 +13,10 @@ import GenreSkeleton from "./GenreSkeleton";
 
 interface Props {
     onSelectGenre: (genre: Genre) => void;
+    selectedGenre: Genre | null;
 }
 
-export const GenreList = ({ onSelectGenre }: Props) => {
+export const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
     const { data, isLoading } = useGenres();
     const skeletons = [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -32,16 +33,21 @@ export const GenreList = ({ onSelectGenre }: Props) => {
                 <ListItem key={genre.id} paddingY="5px">
                     <HStack>
                         <Image
-                            boxSize="64px"
+                            boxSize="32px"
                             borderRadius={6}
                             src={getCroppedImageUrl(genre.image_background)}
                         />
                         <Button
                             variant="link"
                             onClick={() => onSelectGenre(genre)}
+                            fontWeight={
+                                genre.id === selectedGenre?.id
+                                    ? "bold"
+                                    : "normal"
+                            }
                             fontSize="lg"
                         >
-                            {genre.name}
+                            {genre.name === 'Massively Multiplayer' ? 'MMORPG' : genre.name}
                         </Button>
                     </HStack>
                 </ListItem>
